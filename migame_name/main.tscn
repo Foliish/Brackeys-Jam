@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://bnm53cyfitgf2"]
+
+[ext_resource type="Script" uid="uid://2ffywelrh7py" path="res://migame_name/main.gd" id="1_t7lp1"]
+
+[node name="Main" type="Node" unique_id=875810365]
+script = ExtResource("1_t7lp1")

@@ -1,38 +1,38 @@
 extends IMinigame
 
-# Модель комнаты, содержащая данные о текущей игровой сессии
+# Room model containing current game session data
 var _room: RoomModel
-# Прогресс каждого игрока в мини-игре
+# Progress of each player in the minigame
 var _player_progress: Array[float]
-# Конфигурация мини-игры
+# Minigame configuration
 var config: Configs
 
-# Инициализация мини-игры с начальными параметрами
+# Initializes the minigame with starting parameters
 func init(_params: StartParams) -> void:
 	_room = _params.room
-	# Подключение сигнала ввода игрока для обработки действий
+	# Connect player input signal to process actions
 	_room.player_input.connect(_on_player_input)
-	# Инициализация массива прогресса для каждого игрока
+	# Initialize progress array for each player
 	for i in _room.players.size():
 		_player_progress.append(0)
 	config = Configs.get_config()
 	
 func _ready() -> void:
-	# Установка цвета фона из конфигурации
+	# Set background color from configuration
 	$ColorRect.color = config.color
 			
-# Завершение мини-игры и расчет результатов
+# Finish minigame and calculate results
 func stop() -> EndParams:
 	var end_params = EndParams.new()
 	var win_pts = float(config.winPoints)
 	
-	# Расчет очков на основе набранного прогресса игроков
+	# Calculate scores based on players' accumulated progress
 	for i in _room.players.size():
 		var player = _room.players[i]
 		var progress = _player_progress[i]
 		var score = 0
 		
-		# Определение очков по порогам прогресса
+		# Determine score based on progress thresholds
 		if progress >= win_pts:
 			score = 5
 		elif progress >= win_pts * 0.8:
@@ -46,24 +46,24 @@ func stop() -> EndParams:
 	
 	return end_params
 
-# Приостановка мини-игры (не поддерживается)
+# Pause minigame (not supported)
 func pause() -> bool:
 	return false
 
-# Возобновление мини-игры после паузы (не поддерживается)
+# Resume minigame after pause (not supported)
 func resume() -> bool:
 	return false
 
-# Обработка ввода от игрока (движение джойстика)
+# Handle player input (joystick movement)
 func _on_player_input(player_id: int,args: JoystickEventArgs) -> void:
-	# Изменение прогресса игрока на основе направления и силы отклонения джойстика
+	# Update player progress based on joystick direction and force
 	_player_progress[player_id] += (args.direction.x - args.direction.y) * args.force * args.delta_time
-	# Проверка условия победы
+	# Check victory condition
 	if _player_progress[player_id] >=config.winPoints:
 		emit_signal("finished",self)
 	_update_ui()
 
-# Обновление пользовательского интерфейса с отображением прогресса игроков
+# Update UI displaying player progress
 func _update_ui()->void:
 	var il : ItemList = $ItemList
 	il.clear()

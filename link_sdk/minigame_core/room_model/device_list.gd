@@ -1,7 +1,7 @@
 extends RefCounted
 class_name DeviceList
 
-var colors: Array[Color] = [
+const colors: Array[Color] = [
 	Color("ff2a2a"),       # Bright red
 	Color("2980b9"),       # Classic blue
 	Color("2ecc71"),       # Neon green

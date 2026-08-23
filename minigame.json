@@ -1,0 +1,6 @@
+{
+	"minigame_name":{
+		"main_scene": "res://migame_name/main.tscn",
+		"inputs_scene": "res://link_sdk/inputs/joystick/joystick.tscn"
+	}
+}

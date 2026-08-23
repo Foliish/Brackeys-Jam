@@ -7,7 +7,6 @@ enum DeviceType { PHONE, TABLET, LAPTOP, PC }
 var peer_id: int = 0
 var name: String = ""
 var type: DeviceType = DeviceType.PHONE
-var icon_index: int = 0
 var player_count: int = 1
 
 var players: Array[PlayerModel] = []

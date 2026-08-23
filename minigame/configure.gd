@@ -1,7 +1,7 @@
 extends RefCounted
 class_name Configs
 
-# Регистрация класса в сериализаторе при инициализации типа
+# Register class in serializer upon type initialization
 static func _static_init() -> void:
 	ObjectSerializer.register_script("Configs", Configs)
 
@@ -9,7 +9,7 @@ var color: Color
 var winPoints: int
 const CONFIG_PATH = "res://minigame/config.json"
 
-# Считывает конфигурацию мини-игры из JSON-файла или возвращает конфигурацию по умолчанию
+# Reads minigame configuration from a JSON file or returns default configuration
 static func get_config() -> Configs:
 	if FileAccess.file_exists(CONFIG_PATH):
 		var file = FileAccess.open(CONFIG_PATH, FileAccess.READ)

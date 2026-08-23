@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://ccskcmrvg3qvg"]
 
-[ext_resource type="Script" uid="uid://dtoirw06nnqab" path="res://minigame/main.gd" id="1_ynwg6"]
+[ext_resource type="Script" uid="uid://meq8ssg2brwj" path="res://minigame/main.gd" id="1_ynwg6"]
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ynwg6"]
 properties/0/path = NodePath(".:item_count")
@@ -10,20 +10,20 @@ properties/1/path = NodePath(".:item_0/text")
 properties/1/spawn = true
 properties/1/replication_mode = 1
 
-[node name="Main" type="Node2D"]
+[node name="Main" type="Node2D" unique_id=619889786]
 script = ExtResource("1_ynwg6")
 
-[node name="ItemList" type="ItemList" parent="."]
+[node name="ItemList" type="ItemList" parent="." unique_id=1583774376]
 offset_left = 594.0
 offset_top = 196.0
 offset_right = 1095.0
 offset_bottom = 606.0
 item_count = 1
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ItemList"]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="ItemList" unique_id=321283023]
 replication_config = SubResource("SceneReplicationConfig_ynwg6")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1679621584]
 offset_left = 194.0
 offset_top = 194.0
 offset_right = 579.0
